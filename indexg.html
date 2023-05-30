@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Encriptador Oracle Alura</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+  <main>
+    <section class="titulo-uno">
+        <h1 class="main-h1"><img class="main-img" src="img/aluraoracle.png"></h1>
+    </section>
+    <section>
+        <div class="buttons">
+            <button class="boton-encriptar" onclick="encryptText()">Encriptar</button>
+            <button class=" " onclick="decryptText()">Desencriptar</button>
+        </div>    
+        <br>
+        <textarea id="ingresa-texto" rows="4" cols="5" placeholder="Ingrese el texto aquí" name="mensaje" id="mensaje"></textarea>
+        <br>
+        <textarea id="salida-text" rows="4" cols="5" readonly class="salida-texto hidden"></textarea>
+        <br>
+    </section>
+  
+    <aside class="complemento">
+        <section class="complemento-1">
+            <ul class="recuadro" id="recuadro">
+                <li>
+                    <div class="complemento-img">
+                        <img src="img/dibujo.png"></img>
+                    </div>
+                </li>
+                <div class="complemento-salida">
+                    <li><h2 class="complemento-subtitulo">Ningún mensaje fue encontrado</h2></li>
+                    <li><h3 class="complemento-subtitulo-2">Ingresa el texto que desees encriptar o desencriptar</h3></li>
+                </div>
+            </ul>               
+        </section>
+        <section class="complemento-boton">
+            <br>
+            <button class="boton-copiar" onclick="copyToClipboard()" disabled>Copiar</button>
+            </br>
+        </section>
+    </aside>
+
+    <Section class="JAVA">
+        <script>
+            function encryptText() {
+              const inputText = document.getElementById("ingresa-texto").value;
+              const outputText = inputText.replace(/e/g, "enter")
+                                          .replace(/i/g, "imes")
+                                          .replace(/a/g, "ai")
+                                          .replace(/o/g, "ober")
+                                          .replace(/u/g, "ufat");
+              document.getElementById("salida-text").value = outputText;
+              document.getElementById("salida-text").classList.remove("hidden");
+              document.getElementById("recuadro").classList.add("hidden"); 
+
+              const copyButton = document.querySelector(".boton-copiar");
+              copyButton.disabled = outputText.length === 0;
+            }
+        
+            function decryptText() {
+              const inputText = document.getElementById("ingresa-texto").value;
+              const outputText = inputText.replace(/enter/g, "e")
+                                          .replace(/imes/g, "i")
+                                          .replace(/ai/g, "a")
+                                          .replace(/ober/g, "o")
+                                          .replace(/ufat/g, "u");
+              document.getElementById("salida-text").value = outputText;
+              document.getElementById("salida-text").classList.remove("hidden"); 
+              document.getElementById("recuadro").classList.add("hidden"); 
+
+              const copyButton = document.querySelector(".boton-copiar");
+              copyButton.disabled = outputText.length === 0;
+            }
+        
+            function copyToClipboard() {
+              const outputText = document.getElementById("salida-text");
+              outputText.select();
+              outputText.setSelectionRange(0, 99999);
+              document.execCommand("copy");
+              alert("¡Texto copiado al portapapeles!");
+            }
+        </script>
+    </Section>    
+
+</main>
+<footer>
+    <h1><img class="img-condiciones" src="img/Frame 1.png"></h1>
+</footer>
+  
+</body>
+</html>
